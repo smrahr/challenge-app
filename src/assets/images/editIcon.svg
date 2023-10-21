@@ -1,0 +1,14 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20">
+	<title>مدیریت کاربران</title>
+	<defs>
+		<image  width="20" height="20" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAAXNSR0IB2cksfwAAAMxQTFRFm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5ufm5uf0oIJnAAAAER0Uk5TAF3n/54JEBYVbPasCrXxBi7msM3Qz6oCcTjw8nA3Gel55TaXFJKTVeKF0Q8LziYrSLq4i+i3XietKccksuzU1uMErsA05HPVAAAAuElEQVR4nFXQ1RKDMABE0W237tQFqLu7+///U9OEkrIvzJwhdwiAdz4/A0HxDIUjYmFpUTLGOBJJqqXS0jIwiCyNXF6sUCyhTFaQqBKsuT2TtGDX2QCbPxNnW19rA6xrs9CR5qL57dkGu9D46/Wgsa97GgfirOoNR2MHJ5xipnpTzh1ccLSk6q04c3AtrrkZytzWRau72zufq/FvCptePPCI/x8id+IZuPB6u7u7Pfh4AuMXPXuLFz973hO0cF7RMgAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+	</style>
+	<g id="مدیریت کاربران">
+		<g id="ردیف 4">
+			<use id="ویرایش آیکون" href="#img1" x="0" y="0" />
+		</g>
+	</g>
+</svg>
