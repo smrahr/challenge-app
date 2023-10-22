@@ -7,20 +7,26 @@ import {
 import { useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 
 const Create = () => {
+  const tasks = useSelector((state) => state.tasks);
+  console.log(tasks, "tasks");
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-  const [errorText, setErrorText] = useState(false);
-
+  const [nameError, setNameError] = useState(false);
+  const [idError, setIdError] = useState(false);
   const [taskDetails, setTaskDetails] = useState({
-    id: 0,
+    id: "",
     title: "",
     description: "",
     completed: false,
   });
 
   const createTask = () => {
+    console.log(taskDetails, "create.detail");
     setLoading(true);
+    dispatch({ type: "addTask", payload: { ...taskDetails } });
     axios
       .post("http://46.100.46.149:8069/api/tasks", { ...taskDetails })
       .then((res) => {})
@@ -31,26 +37,24 @@ const Create = () => {
   return (
     <div>
       {loading && <LinearProgress />}
-
       <TextField
         label="id"
         variant="outlined"
         fullWidth
         required
         autoComplete="off"
-        error={errorText}
+        error={idError}
         style={{ marginBottom: "50px" }}
         value={taskDetails.id}
         onChange={(value) => {
-          console.log(value.target.value === "");
           if (value.target.value === "") {
-            setErrorText(true);
+            setIdError(true);
           } else {
-            setErrorText(false);
+            setIdError(false);
           }
           setTaskDetails({
             ...taskDetails,
-            id: value.target.value,
+            id: +value.target.value,
           });
         }}
       />
@@ -60,14 +64,20 @@ const Create = () => {
         fullWidth
         required
         autoComplete="off"
+        error={nameError}
         style={{ marginBottom: "50px" }}
         value={taskDetails.title}
-        onChange={(value) =>
+        onChange={(value) => {
+          if (value.target.value === "") {
+            setNameError(true);
+          } else {
+            setNameError(false);
+          }
           setTaskDetails({
             ...taskDetails,
             title: value.target.value,
-          })
-        }
+          });
+        }}
       />
       <TextField
         label="توضیحات"

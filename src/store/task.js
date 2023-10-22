@@ -5,7 +5,18 @@ export const tasksReducer = (state = [], action) => {
     case "setAllTasks":
       return [...action.payload];
     case "deleteTask":
-      return state.filter((item) => item !== action.payload);
+      return state.filter((item) => +item.id !== +action.payload);
+    case "addTask":
+      return [...state, action.payload];
+    case "editTask": {
+      const editedIndex = state.findIndex(
+        (item) => +item.id === +action.payload.id
+      );
+      console.log(editedIndex, "editedIndex");
+      const tasks = [...state];
+      tasks[editedIndex] = action.payload.task;
+      return tasks;
+    }
     default:
       return state;
   }

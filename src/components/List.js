@@ -15,11 +15,13 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "../assets/images/editIcon.svg";
 
 const List = () => {
+  const dispatch = useDispatch();
+
   const [loading, setLoading] = useState(false);
   const [edit, setEdit] = useState(false);
 
   const tasks = useSelector((state) => state.tasks);
-  const dispatch = useDispatch();
+  console.log(tasks, "tasks");
   const fetchData = () => {
     setLoading(true);
     axios
@@ -30,10 +32,14 @@ const List = () => {
   };
 
   const deleteTask = (id) => {
+    console.log(id, "deleteid");
+    dispatch({ type: "deleteTask", payload: +id });
+    console.log();
+
     axios
-      .delete(`http://46.100.46.149:8069/api/tasks/:${id}`)
+      .delete(`http://46.100.46.149:8069/api/tasks/${id}`)
       .then((res) => {
-        // dispatch({ type: "deleteTask", payload: id });
+        console.log("okkk");
         fetchData();
       })
       .catch((e) => console.log(e, "e"))
