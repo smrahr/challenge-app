@@ -8,14 +8,15 @@ import { useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const Create = () => {
   const tasks = useSelector((state) => state.tasks);
-  console.log(tasks, "tasks");
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [nameError, setNameError] = useState(false);
   const [idError, setIdError] = useState(false);
+  const [descError, setDescError] = useState(false);
   const [taskDetails, setTaskDetails] = useState({
     id: "",
     title: "",
@@ -24,14 +25,28 @@ const Create = () => {
   });
 
   const createTask = () => {
-    console.log(taskDetails, "create.detail");
-    setLoading(true);
-    dispatch({ type: "addTask", payload: { ...taskDetails } });
-    axios
-      .post("http://46.100.46.149:8069/api/tasks", { ...taskDetails })
-      .then((res) => {})
-      .catch((e) => console.log(e, "e"))
-      .finally(() => setLoading(false));
+    if (taskDetails.title && taskDetails.description && taskDetails.id) {
+      setLoading(true);
+      axios
+        .post("http://46.100.46.149:8069/api/tasks", { ...taskDetails })
+        .then((res) => {
+          dispatch({ type: "addTask", payload: { ...taskDetails } });
+          window.location.href = "/";
+        })
+        .catch((e) => console.log(e, "e"))
+        .finally(() => setLoading(false));
+    } else {
+      toast.success("لطفا فیلدها را پر کنید", {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
   };
 
   return (
@@ -85,14 +100,20 @@ const Create = () => {
         fullWidth
         required
         autoComplete="off"
+        error={descError}
         value={taskDetails.description}
         style={{ marginBottom: "50px" }}
-        onChange={(value) =>
+        onChange={(value) => {
+          if (value.target.value === "") {
+            setDescError(true);
+          } else {
+            setDescError(false);
+          }
           setTaskDetails({
             ...taskDetails,
             description: value.target.value,
-          })
-        }
+          });
+        }}
       />
       <FormControlLabel
         control={

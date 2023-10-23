@@ -12,7 +12,6 @@ export const tasksReducer = (state = [], action) => {
       const editedIndex = state.findIndex(
         (item) => +item.id === +action.payload.id
       );
-      console.log(editedIndex, "editedIndex");
       const tasks = [...state];
       tasks[editedIndex] = action.payload.task;
       return tasks;
